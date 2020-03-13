@@ -1,4 +1,4 @@
-
+// this is sample on how to connect database in express
 var mysql = require('mysql');
 
 
