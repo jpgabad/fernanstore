@@ -1,0 +1,64 @@
+<%- include('partials/header'); -%>
+<%- include('partials/navigation'); -%>
+
+<section>
+      <div class="container-fluid">
+        <div class="row"> 
+          
+          <div class="col-lg-10 ml-auto">
+            <div class="row pt-5 mt-3 mb-5">
+              
+              <div class="col-md-9">
+                
+                <!--DASHBOARD NOTIFICATION -->
+                <div class="card">
+                  <div class="card-body">
+                    <div class="dash-analytic"><i class="fa fa-pie-chart fa-2x"></i></div>
+                    <div class="d-inline-block dash-body">
+                      <h5 class="d-inline-block">Analytics Dashboard</h5>
+                      <p>This is an example dashboard created using build-in elements</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- DASHBOARD MONTH,HALF,YEAR -->
+                <div class="card mt-3">
+                <div class="card-body">
+                <h1>This All Images Page</h1>
+
+                <a href="/new">Add new Image</a>
+
+                <% campgrounds.forEach(function(img){%>
+                <div>
+                <h4><%= img.name%></h4>
+                <img src="<%= img.image %>" width="750" height="500">
+                </div>
+                <% }) %>
+
+                <a href="/">Back to Home page</a>
+
+                </div>
+                </div>
+
+
+          
+             
+    
+                
+
+              </div>
+
+              <%- include('partials/incomes_update'); -%>
+
+              
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+      
+        
+<%- include('partials/footer'); -%>
