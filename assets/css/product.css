@@ -1,0 +1,26 @@
+.product-icon{
+    display: inline-block;
+    height: 50px;
+
+}
+
+.product-icon i{
+    float: left;
+    margin-right: 10px;
+}
+
+
+.product-table{
+    display: flex;
+}
+
+.product-table-right form{
+    display:inline-block;
+}
+.table-font tr th{
+    font-size: 12px;
+}
+
+.add-product input{
+    width: 460px;
+}
