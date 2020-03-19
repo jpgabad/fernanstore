@@ -143,18 +143,18 @@
                             </thead>
 
                             <tbody>
-                             <% product.forEach(function(product) { %>
+                             <% products.forEach(function(product) { %>
                                 <tr>
                                     <th scope="row"><%= product.id %></th>
-                                    <th scope="row"><%= product.product_name %></th>
-                                    <th scope="row"><%= product.price_id %></th>
-                                    <th scope="row"><%= product.product_pcs_per_bundle %></th>
-                                    <th scope="row"><%= product.product_bundle_per_sako %></th>
-                                    <th scope="row"><%= product.product_used_for %></th>
-                                    <th scope="row"><%= product.product_size %></th>
-                                    <th scope="row"><%= product.img_id %></th>
-                                    <th scope="row"><%= product.category_id %></th>
-                                    <th scope="row"><%= product.company_id %></th>
+                                    <th scope="row"><%= product.productName %></th>
+                                    <th scope="row"><%= product.price %></th>
+                                    <th scope="row"><%= product.piecesPerBundle %></th>
+                                    <th scope="row"><%= product.bundlePerSako %></th>
+                                    <th scope="row"><%= product.productUsedFor %></th>
+                                    <th scope="row"><%= product.productSize %></th>
+                                    <th scope="row"><%= product.img %></th>
+                                    <th scope="row"><%= product.category %></th>
+                                    <th scope="row"><%= product.company %></th>
                                 </tr>
                               <% }) %>
 

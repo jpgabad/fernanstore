@@ -51,13 +51,18 @@ app.get("/", function(req, res) {
 **********************************************************/
 // main product
 app.get("/product", function(req, res){
-	var products = [];
-	var categories = [];
-	var categoryItems = {
+	let products = [];
+	let categories = [];
+	let company = [];
+	let companyItems = {
+		id: "",
+		company_name: ""
+	}
+	let categoryItems = {
 		id: "",
 		category_code: ""
 	}
-	var items = {
+	let items = {
 		id: "",
 		productName: "",
 		price: "",
@@ -69,7 +74,7 @@ app.get("/product", function(req, res){
 		category: "",
 		company: ""
 	};
-	
+
 	// select product table
 	connection.query('SELECT * FROM product', (err, rows, fields)=>{
 					
@@ -94,50 +99,23 @@ app.get("/product", function(req, res){
 					products.push(items);
 			}
 		}
-
-			// var userId = products[0].category;
-			// 		var columns = ['category_code']; // add on this if you want to sleect more than 2 columns
-			// 		var query = connection.query('SELECT ?? FROM ?? WHERE id = ?', [columns, 'category', userId], function (error, results, fields) {
-			// 		if (error) throw error;
-			// 			//console.log(results);
-
-			// 			Object.keys(results).forEach(function(key) {
-			// 				var row = results[key];
-			// 				//return "console.log(row.category_code)";
-			// 				// PAANO MAPAPALABAS YUNG RESULTS DITO????	
-			// 					products[0].category = row.category_code;
-			// 				  //cat = row.category_code;
-			// 				  	console.log(products);
-			// 			  });	
-
-						
-
-			// 			// items.category_code = results;
-			// 			// products.push(items);
-			// 			// console.log(products);
-			// 		});
-					
-
-				
-		
-			// select price table
-			// perform here the selecting price based on id
-			//console.log(rows[0].id);
-			//res.render("product", {product:rows});
-		else{
+			else{
 			console.log(err);
 		}
+
 
 		// get all  category_code from category table and save sa object
 		connection.query("SELECT * FROM category", function (err, rows, fields) {
 		if (err) throw err;
-		for(var i = 0; i < rows.length; i++){
-			categoryItems = {
-				id: rows[i].id,
-				category_code: rows[i].category_code
-			};
-			categories.push(categoryItems);
-		}
+			for(var i = 0; i < rows.length; i++){
+				categoryItems = {
+					id: rows[i].id,
+					category_code: rows[i].category_code
+				};
+				categories.push(categoryItems);
+			}
+
+			
 
 
 		// sort all products
@@ -161,17 +139,54 @@ app.get("/product", function(req, res){
 			}
 		}
 
-		console.log(products);
+		
 
 		});
 
+		// get all  Company name from company table and save sa object
+		connection.query("SELECT * FROM company", function (err, rows, fields) {
+			if (err) throw err;
+				for(var i = 0; i < rows.length; i++){
+					companyItems = {
+						id: rows[i].id,
+						company_name: rows[i].company_name
+					};
+					company.push(companyItems);
+				}
+	
+				
+	
+	
+			// sort all company name
+			for(var i = 0; i < products.length; i++){
+	
+					// sort all category
+					// problem : how can i sort all categories in order to get the right code
+				var c = 0;
+				var itr = false;
+	
+				while (itr == false) {
+					if(products[i].company == company[c].id){
+						products[i].company = company[c].company_name;
+						var itr = true;
+						c = 0;
+					}else{
+						var itr = false;
+						c++;
+					}
+					
+				}
+			}
+			//console.log(products);
+			//res.send(products);
+			res.render("product", {products:products});
+		});
+
+
+		
 		
 		
 	});
-
-
-	
-
 });
 
 // add product
